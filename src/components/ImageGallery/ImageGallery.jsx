@@ -1,12 +1,23 @@
+import { Component } from 'react';
 import { List } from './ImageGallery.styled';
-import { Item } from 'components/ImageGalleryItem/ImageGalleryItem.styled';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
-export const ImageGallery = ({ images }) => {
-  return (
-    <List>
-      {images.map(image => {
-        return <Item key={image.id} image={image} />;
-      })}
-    </List>
-  );
-};
+export class ImageGallery extends Component {
+  render() {
+    const { images } = this.props;
+    return (
+      <List>
+        {images.map(img => {
+          return (
+            <ImageGalleryItem
+              key={img.id}
+              less={img.webformatURL}
+              large={img.largeImageURL}
+              tag={img.tag}
+            />
+          );
+        })}
+      </List>
+    );
+  }
+}
